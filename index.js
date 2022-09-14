@@ -1,25 +1,33 @@
 const express = require("express");
+const mongoose = require("mongoose");
+const cors = require("cors");
 
-const route = require("./routes");
-const db = require("./config/db");
+const ideaRoute = require("./routes/ideas");
 
 require("dotenv").config();
 
 const app = express();
+app.use(cors());
 
+/**
+ * CONNECT TO MONGODB
+ */
 const uri = process.env.MONGODB_URI;
-
-db.connect(uri)
+mongoose
+  .connect(uri)
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.log(err));
 
+/**
+ * BODY PARSER
+ */
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 /**
- * Index route
+ * IDEA ROUTE
  */
-app.use("/", route);
+app.use("/api/ideas", ideaRoute);
 
 const PORT = process.env.PORT || 5000;
 
