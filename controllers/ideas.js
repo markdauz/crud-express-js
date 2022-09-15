@@ -1,7 +1,12 @@
+require("../models/Idea");
+
+const mongoose = require("mongoose");
+const Idea = mongoose.model("ideas");
+
 exports.postIdea = async (req, res, next) => {
   const data = new Idea({
     title: req.body.title,
-    details: eq.body.details,
+    details: req.body.details,
   });
 
   try {
@@ -14,7 +19,7 @@ exports.postIdea = async (req, res, next) => {
 
 exports.getIdeas = async (req, res, next) => {
   try {
-    const data = await Idea.find();
+    const data = await Idea.find().sort({ createdAt: -1 });
     res.json(data);
   } catch (error) {
     res.status(500).json({ message: error.message });

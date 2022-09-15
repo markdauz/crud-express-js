@@ -1,12 +1,8 @@
 const express = require("express");
-const mongoose = require("mongoose");
 
 const ideasController = require("../controllers/ideas");
 
 const route = express.Router();
-
-require("../models/Idea");
-const Idea = mongoose.model("ideas");
 
 /**
  * POST IDEA
