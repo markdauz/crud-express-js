@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 
 const ideaRoute = require("./routes/ideas");
+const userRoute = require("./routes/user");
 
 require("dotenv").config();
 
@@ -19,7 +20,10 @@ app.use(express.urlencoded({ extended: true }));
  * IDEA ROUTE
  */
 app.use("/api/ideas", ideaRoute);
-
+/**
+ * USER ROUTE
+ */
+app.use("/api/user", userRoute);
 /**
  * CONNECT TO MONGODB
  */

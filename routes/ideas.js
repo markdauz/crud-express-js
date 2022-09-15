@@ -1,8 +1,7 @@
 const express = require("express");
+const route = express.Router();
 
 const ideasController = require("../controllers/ideas");
-
-const route = express.Router();
 
 /**
  * POST IDEA
