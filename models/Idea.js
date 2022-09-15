@@ -15,6 +15,10 @@ const IdeaSchema = new Schema(
       type: Date,
       default: Date.now,
     },
+    user_id: {
+      type: String,
+      required: true,
+    },
   },
   { timestamps: true }
 );

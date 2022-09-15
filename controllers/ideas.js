@@ -7,7 +7,11 @@ const Idea = mongoose.model("ideas");
  * POST IDEA
  */
 exports.postIdea = async (req, res, next) => {
+  // console.log(req);
+  // we have access to _id due to the requireAuth middleware
+  const user_id = req.user._id;
   const data = new Idea({
+    user_id,
     title: req.body.title,
     details: req.body.details,
   });
@@ -24,8 +28,12 @@ exports.postIdea = async (req, res, next) => {
  * GET IDEAS
  */
 exports.getIdeas = async (req, res, next) => {
+  // console.log(req);
+  // we have access to _id due to the requireAuth middleware
+  const user_id = req.user._id;
+
   try {
-    const data = await Idea.find().sort({ createdAt: -1 });
+    const data = await Idea.find({ user_id }).sort({ createdAt: -1 });
     res.json(data);
   } catch (error) {
     res.status(500).json({ message: error.message });

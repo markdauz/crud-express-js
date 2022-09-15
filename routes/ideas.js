@@ -2,6 +2,10 @@ const express = require("express");
 const route = express.Router();
 
 const ideasController = require("../controllers/ideas");
+const requireAuth = require("../middleware/requireAuth");
+
+// Require for all authorized route
+route.use(requireAuth);
 
 /**
  * POST IDEA
