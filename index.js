@@ -10,15 +10,6 @@ const app = express();
 app.use(cors());
 
 /**
- * CONNECT TO MONGODB
- */
-const uri = process.env.MONGODB_URI;
-mongoose
-  .connect(uri)
-  .then(() => console.log("MongoDB connected"))
-  .catch((err) => console.log(err));
-
-/**
  * BODY PARSER
  */
 app.use(express.json());
@@ -28,6 +19,15 @@ app.use(express.urlencoded({ extended: true }));
  * IDEA ROUTE
  */
 app.use("/api/ideas", ideaRoute);
+
+/**
+ * CONNECT TO MONGODB
+ */
+const uri = process.env.MONGODB_URI;
+mongoose
+  .connect(uri)
+  .then(() => console.log("MongoDB connected"))
+  .catch((err) => console.log(err));
 
 const PORT = process.env.PORT || 5000;
 

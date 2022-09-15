@@ -1,19 +1,22 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const IdeaSchema = new Schema({
-  title: {
-    type: String,
-    required: true,
+const IdeaSchema = new Schema(
+  {
+    title: {
+      type: String,
+      required: true,
+    },
+    details: {
+      type: String,
+      required: true,
+    },
+    date: {
+      type: Date,
+      default: Date.now,
+    },
   },
-  details: {
-    type: String,
-    required: true,
-  },
-  date: {
-    type: Date,
-    default: Date.now,
-  },
-});
+  { timestamps: true }
+);
 
 mongoose.model("ideas", IdeaSchema);
