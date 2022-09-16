@@ -32,6 +32,7 @@ mongoose
   .connect(uri)
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.log(err));
+mongoose.set("bufferCommands", false);
 
 const PORT = process.env.PORT || 5000;
 
